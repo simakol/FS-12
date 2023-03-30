@@ -1,0 +1,38 @@
+/* p {
+  color: red;
+  background-color: #000;
+}
+
+span {
+  color: yellow;
+}
+
+.box {
+  background-color: black;
+  width: 100px;
+  height: 100px;
+  border: 2px solid rgb(4, 243, 4);
+  border-radius: 10px;
+} */
+
+.movie-card {
+  background-color: rgb(180, 178, 178);
+  width: 300px;
+  border-radius: 15px;
+  border: 5px solid black;
+}
+
+.movie-poster {
+  width: 300px;
+  border-radius: 10px;
+}
+
+.movie-title {
+  text-align: center;
+  color: rgb(17, 17, 105);
+}
+
+.movie-link{
+    color: black;
+    text-align: center;
+}

@@ -1,0 +1,32 @@
+.nav-item {
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 18px;
+  letter-spacing: 2.7px;
+  text-transform: uppercase;
+  color: #ff0000;
+  text-decoration: none;
+  margin-right: 72px;
+  display: inline-block;
+}
+
+.nav-item:last-child {
+  margin-right: 0;
+}
+
+nav {
+  text-align: center;
+}
+
+header {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
