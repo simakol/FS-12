@@ -10,6 +10,12 @@
   text-decoration: none;
   margin-right: 72px;
   display: inline-block;
+  transition: 0.5s;
+}
+
+.nav-item:hover {
+  color: #710808;
+  text-shadow: 1px 1px 10px #000;
 }
 
 .nav-item:last-child {
@@ -29,4 +35,86 @@ img {
   display: block;
   width: 100%;
   height: auto;
+}
+
+.title {
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 27px;
+  letter-spacing: 3.3px;
+  text-transform: uppercase;
+  color: #373737;
+  text-align: center;
+  margin-top: 49px;
+  margin-bottom: 38px;
+}
+
+.text {
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  text-align: center;
+  letter-spacing: 2.4px;
+  color: #373737;
+  width: 80%;
+  /* margin: 50px; з усіх сторін */
+  /* margin: 50px 100px; 1 - верх-низ, 2 - право-ліво */
+  /* margin: 10px 50px 20px; 1 - верх, 2 - право-ліво, 3 - низ */
+  /* margin: 10px 20px 40px 50px; 1 - верх, 2 - право, 3 - низ, 4 - ліво */
+  margin: 0 auto;
+}
+
+.text:first-child {
+  margin-bottom: 28px;
+}
+
+.text:last-child {
+  margin-bottom: 66px;
+}
+
+.btn {
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 12px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: #ff0000;
+  border-radius: 4px;
+  padding: 18px 42px;
+  text-decoration: none;
+  display: inline-block;
+  transition: 0.5s;
+  border: 2px solid transparent;
+}
+
+.btn:hover {
+  color: #ff0000;
+  background: #ffffff;
+  border-color: #ff0000;
+}
+
+.btn-wrapper {
+  text-align: center;
+}
+
+footer {
+  padding: 40px 105px 29px;
+}
+
+.copyright {
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 2.4px;
+  color: #373737;
+  text-align: right;
 }
