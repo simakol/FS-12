@@ -1,0 +1,118 @@
+/*
+displays:
+- block (<div>, <p>, <h1>): 
+    - займає всю доступну ширину
+    - можна давати відступи
+    - можна давати розміри
+
+- inline-block:
+    - вони займають стільки місця, скільки потрібно для відображення контенту
+    - можна давати відступи
+    - можна давати розміри
+
+- inline (<a>, <span>): 
+    - вони займають стільки місця, скільки потрібно для відображення контенту
+    - погано працюють з відступами
+    - не можна давати розміри
+
+- flex
+*/
+
+/* .box-container {
+  background-color: #c1c1c1;
+  height: 80vh;
+  display: flex; */
+/* justify-content: space-around; */
+/*
+  justify-content - вирівнювання дочірних елементів по горизонталі(вісь x)
+
+  - flex-start - ставить елементи в саму ліву точку контейнера
+  - flex-end - ставить елементи в саму праву точку контейнера
+  - center - ставить елементи по центру контейнера
+  - space-between - перший елемент ставить на початок, останній елемент ставить у кінець, а всі інші елементи розміщує в центр з однаковими відступами  
+  - space-evenly - розміщує елементи по центру і дає однакові відступи між ними
+  - space-around - дає однакові відступи навколо елементів
+
+  */
+/* align-items: center; */
+/* 
+  align-items - вирівнювання дочірних елементів по вертикалі(вісь y)
+
+  - flex-start - ставить елементи на верх  контейнера
+  - flex-end - ставить елементи вниз  контейнера
+  - center - ставить елементи по центру контейнера
+
+  */
+/* flex-direction: row-reverse; */
+/*
+    flex-direction - в якому напрямку і в якому порядку будуть вирінюватись елементи
+
+    - row - напрямок осі x
+    - row-reverse - напрямок осі x в зворотньому порядку (змінює напрямок повністю, тобто flex-start тепер буде у кінці контейнеру)
+    - column - напрямок осі y
+    - column-reverse - напрямок осі y в зворотньому порядку
+  */
+/* } */
+
+/* .box {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+} */
+
+/* 
+<div class="box-container">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+ */
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 80px;
+  line-height: 94px;
+  color: #000000;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 65px;
+  margin-bottom: 40px;
+}
+
+.selected-text {
+  color: #4bcaff;
+}
+
+.nav-menu {
+  background-color: #35444f;
+  text-align: center;
+}
+
+.nav-menu-item {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28px;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 20px 32px;
+  display: inline-block;
+  border-left: 1px solid #fff;
+  transition: 0.5s;
+}
+
+.nav-menu-item:last-child {
+  border-right: 1px solid #fff;
+}
+
+.nav-menu-item:hover {
+  background-color: #222f3a;
+}
