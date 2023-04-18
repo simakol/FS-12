@@ -180,6 +180,9 @@ displays:
   background: rgba(99, 105, 110, 0.48);
   padding: 20px 40px;
   margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .footer-menu-item {
@@ -191,8 +194,26 @@ displays:
   color: #0c1927;
   text-decoration: none;
   margin-right: 40px;
+  transition: 0.5s;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 8px;
 }
 
 .footer-menu-item:last-child {
   margin-right: 0;
+}
+
+.footer-menu-item:hover {
+  color: #3181a6;
+  border-bottom-color: #3181a6;
+}
+
+.copyright {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 24px;
+  color: #010101;
+  margin: 0;
 }
