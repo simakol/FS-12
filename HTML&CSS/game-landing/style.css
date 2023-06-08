@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;700&display=swap");
 
+html {
+  scroll-behavior: smooth;
+}
+
 .bg-img {
   height: 100vh;
   background-repeat: no-repeat;
@@ -155,6 +159,63 @@ header {
   content: "Want to stay in touch?";
 }
 
+.section-text {
+  font-family: "Open Sans", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #ffffff;
+  margin-top: 45px;
+}
+
+.subscribe-wrapper {
+  width: 55%;
+}
+
+.subscribe-section > .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.subscribe-form {
+  margin-top: 60px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.subscribe-form > .main-btn {
+  padding: 20px 70px;
+  border: none;
+  cursor: pointer;
+}
+
+.form-email {
+  outline: none;
+  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 5px;
+  width: 55%;
+  padding: 20px;
+  font-family: "Open Sans", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 25px;
+  color: #ffb548;
+}
+
+.form-email::placeholder {
+  font-family: "Open Sans", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  color: #ffffff;
+  opacity: 0.5;
+}
+
 @media (max-width: 1300px) {
   .burger-menu {
     width: 75%;
@@ -267,5 +328,53 @@ header {
   .hero-btn {
     padding: 13px 10px;
     margin-top: 12px;
+  }
+
+  .subscribe-section > .container {
+    position: relative;
+  }
+
+  .section-title {
+    font-size: 33px;
+    line-height: 33px;
+  }
+
+  .section-title::before {
+    font-size: 18px;
+    line-height: 18px;
+  }
+
+  .section-text {
+    font-size: 14px;
+    line-height: 19px;
+  }
+
+  .subscribe-wrapper {
+    width: 60%;
+  }
+
+  .subscribe-img {
+    width: 210px;
+    height: 340px;
+    transform: translateX(-60px);
+  }
+
+  .subscribe-section > .container {
+    justify-content: center;
+  }
+
+  .subscribe-form {
+    padding: 0 15px;
+    margin-top: 50px;
+    flex-direction: column;
+    gap: 20px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -50%;
+  }
+
+  .form-email {
+    width: auto;
   }
 }
