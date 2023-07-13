@@ -91,15 +91,15 @@
 // console.log(student);
 // console.log(student2);
 
-function sum(...numbers) {
-  let sum = 0;
-  for (let i = 0; i < numbers.length; i += 1) {
-    sum += numbers[i];
-  }
-  console.log(sum);
-}
+// function sum(...numbers) {
+//   let sum = 0;
+//   for (let i = 0; i < numbers.length; i += 1) {
+//     sum += numbers[i];
+//   }
+//   console.log(sum);
+// }
 
-sum(4, 5); // 9
-sum(6, 4, 2, 5, 3); // 20
-sum(6, 4, 2, 5, 3, 34, 2, 3, 5, 235, 5);
-sum(6, 4, 2);
+// sum(4, 5); // 9
+// sum(6, 4, 2, 5, 3); // 20
+// sum(6, 4, 2, 5, 3, 34, 2, 3, 5, 235, 5);
+// sum(6, 4, 2);
