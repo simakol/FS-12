@@ -1,0 +1,464 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;700&display=swap");
+
+html {
+  scroll-behavior: smooth;
+}
+
+.bg-img {
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.main-btn {
+  font-family: "Open Sans", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  color: #1a1917;
+  background: linear-gradient(194.68deg, #ffb548 11.27%, #f3af34 90.4%);
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.hero-bg {
+  background-image: url("images/backgrounds/hero-bg.png");
+}
+
+.overlay-shadow {
+  background: radial-gradient(
+    189.96% 61.18% at 50% 38.82%,
+    rgba(255, 181, 72, 0) 0%,
+    rgba(52, 44, 29, 0.80319) 73.22%,
+    #08090a 99.74%
+  );
+  height: 100vh;
+  position: relative;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 0;
+}
+
+.burger-btn,
+#burger {
+  display: none;
+}
+
+.burger-menu {
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-menu > a {
+  font-family: "Open Sans", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.navbar-menu > a:not(:last-child) {
+  margin-right: 30px;
+}
+
+.header-links > a:first-child {
+  margin-right: 15px;
+}
+
+.hero-section {
+  text-align: center;
+  padding-top: 20vh;
+}
+
+.hero-section > h1,
+.hero-section > h2 {
+  font-family: "Bebas Neue", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.hero-section > h1 {
+  font-size: 80px;
+  line-height: 80px;
+  letter-spacing: 3px;
+}
+
+.hero-section > h2 {
+  font-size: 24px;
+  line-height: 24px;
+  letter-spacing: 2px;
+  margin-top: 20px;
+}
+
+.hero-btn {
+  padding: 20px 55px;
+  margin-top: 30px;
+}
+
+.hero-link {
+  font-family: "Open Sans", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 22px;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.subscribe-section {
+  background-image: url("images/backgrounds/bg-subscribe.png");
+  padding-top: 20vh;
+}
+
+.section-title {
+  font-family: "Bebas Neue", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 80px;
+  line-height: 80px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.section-title::before {
+  font-size: 24px;
+  line-height: 24px;
+  letter-spacing: 2px;
+  display: block;
+}
+
+.subscribe-wrapper > .section-title::before {
+  content: "Want to stay in touch?";
+}
+
+.section-text {
+  font-family: "Open Sans", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #ffffff;
+  margin-top: 45px;
+}
+
+.subscribe-wrapper {
+  width: 55%;
+}
+
+.subscribe-section > .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.subscribe-form {
+  margin-top: 60px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.subscribe-form > .main-btn {
+  padding: 20px 70px;
+  border: none;
+  cursor: pointer;
+}
+
+.form-email {
+  outline: none;
+  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 5px;
+  width: 55%;
+  padding: 20px;
+  font-family: "Open Sans", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 25px;
+  color: #ffb548;
+}
+
+.form-email::placeholder {
+  font-family: "Open Sans", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  color: #ffffff;
+  opacity: 0.5;
+}
+
+.gallery-section {
+  background-image: url("images/backgrounds/gallery-bg.png");
+  padding-top: 100px;
+}
+
+.gallery-section > .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+}
+
+.gallery-section .section-title::before {
+  content: "Want to stay in touch?";
+}
+
+.gallery-section .section-title {
+  position: relative;
+}
+
+.gallery-section .left-side {
+  width: 50%;
+}
+
+.gallery-section .left-side .section-title {
+  width: 70%;
+}
+
+.gallery-section .section-title::after {
+  content: "";
+  border-radius: 4px;
+  background: #fff;
+  height: 3px;
+  width: 170%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 999;
+}
+
+.gallery-text {
+  color: #fff;
+  text-align: justify;
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  width: 55%;
+  margin-top: 60px;
+  margin-left: 200px;
+}
+
+.gallery-text > b {
+  font-weight: 700;
+}
+
+.gallery-text > .selected {
+  border-bottom: 1px solid #ffb548;
+}
+
+.swiper {
+  width: 503px;
+  height: 612px;
+  position: relative;
+}
+
+.swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.swiper-slide img {
+  border-radius: 10px;
+}
+
+.swiper-btn-next {
+  position: absolute;
+  right: -80px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@media (max-width: 1300px) {
+  .burger-menu {
+    width: 75%;
+  }
+}
+
+@media (max-width: 1290px) {
+  .container {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .burger-menu {
+    width: 80%;
+  }
+}
+
+@media (max-width: 900px) {
+  .burger-menu {
+    width: 85%;
+  }
+}
+
+@media (max-width: 800px) {
+  .hero-bg {
+    background-position: center;
+  }
+
+  .logo > img {
+    width: 33px;
+    height: 33px;
+  }
+
+  .burger-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    gap: 50px;
+    background-color: #000;
+    opacity: 0;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 999;
+    padding: 0 15px;
+    box-sizing: border-box;
+    transition: 0.8s;
+  }
+
+  header {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .burger-btn {
+    display: block;
+  }
+
+  #burger + label {
+    transition: 0.5s;
+  }
+
+  #burger:checked + label {
+    transform: rotate(270deg);
+    z-index: 1000;
+  }
+
+  #burger:checked + label + .burger-menu {
+    opacity: 1;
+    top: 0;
+  }
+
+  .navbar-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .navbar-menu > a:not(:last-child) {
+    margin-right: 0;
+  }
+
+  .navbar-menu > a {
+    font-size: 23px;
+  }
+
+  .hero-section > h1 {
+    font-size: 33px;
+    line-height: 33px;
+  }
+
+  .hero-section > h2 {
+    font-size: 18px;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 10px;
+  }
+
+  .main-btn {
+    font-size: 14px;
+    line-height: 19px;
+  }
+
+  .hero-btn {
+    padding: 13px 10px;
+    margin-top: 12px;
+  }
+
+  .subscribe-section > .container {
+    position: relative;
+  }
+
+  .section-title {
+    font-size: 33px;
+    line-height: 33px;
+  }
+
+  .section-title::before {
+    font-size: 18px;
+    line-height: 18px;
+  }
+
+  .section-text {
+    font-size: 14px;
+    line-height: 19px;
+  }
+
+  .subscribe-wrapper {
+    width: 60%;
+  }
+
+  .subscribe-img {
+    width: 210px;
+    height: 340px;
+    transform: translateX(-60px);
+  }
+
+  .subscribe-section > .container {
+    justify-content: center;
+  }
+
+  .subscribe-form {
+    padding: 0 15px;
+    margin-top: 50px;
+    flex-direction: column;
+    gap: 20px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -50%;
+  }
+
+  .form-email {
+    width: auto;
+  }
+}

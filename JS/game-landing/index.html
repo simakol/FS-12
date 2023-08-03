@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SOS</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="hero-bg bg-img">
+      <div class="overlay-shadow">
+        <header class="container">
+          <a href="#" class="logo"
+            ><img src="images/logos/logo.svg" alt="sos"
+          /></a>
+          <input type="checkbox" id="burger" />
+          <label class="burger-btn" for="burger"
+            ><img src="images/logos/burger-menu.svg" alt="three white lines"
+          /></label>
+          <div class="burger-menu">
+            <nav class="navbar-menu">
+              <a href="#">MAIN</a>
+              <a href="#">about</a>
+              <a href="#">game features</a>
+              <a href="#">System requirements</a>
+              <a href="#">quotes</a>
+            </nav>
+            <div class="header-links">
+              <a href="#"><img src="images/logos/xbox.svg" alt="xbox" /></a>
+              <a href="#"><img src="images/logos/steam.svg" alt="steam" /></a>
+            </div>
+          </div>
+        </header>
+        <section class="hero-section container">
+          <h1>SURVIVE AT ALL COSTS</h1>
+          <h2>Experience new social battle royale game</h2>
+          <a href="#" class="hero-btn main-btn">Buy Now on Steam</a>
+          <a href="#subscribe" class="hero-link">
+            The story
+            <img src="images/logos/scroll-down.svg" alt="arrow down" />
+          </a>
+        </section>
+      </div>
+    </div>
+    <section class="subscribe-section bg-img" id="subscribe">
+      <div class="container">
+        <img src="images/skull.png" alt="skull" class="subscribe-img" />
+        <div class="subscribe-wrapper">
+          <h2 class="section-title">newsletter SUBSCRIBE</h2>
+          <p class="section-text">
+            In order to start receiving our news, all you have to do is enter
+            your email address. Everything else will be taken care of by us. We
+            will send you emails containing information about game. We don’t
+            spam.
+          </p>
+
+          <form class="subscribe-form">
+            <input
+              type="email"
+              placeholder="Your email address"
+              class="form-email"
+            />
+            <input type="submit" class="main-btn" value="Subscribe now" />
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery-section bg-img">
+      <div class="container">
+        <div class="left-side">
+          <h2 class="section-title">social battle royale game</h2>
+          <p class="gallery-text">
+            Each round, <b>you</b> and <b>15</b> other contestants compete to
+            escape a deadly island filled with monsters. The trick is:
+            <b>three</b> people can survive. Will you run solo or form
+            friendships with others to escape? Making the right decisions could
+            be the difference between
+            <span class="selected">life and death</span>.
+          </p>
+        </div>
+        <div class="right-side">
+          <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img src="images/slide1.png" alt="game place" />
+              </div>
+              <div class="swiper-slide">
+                <img src="images/slide2.png" alt="game place" />
+              </div>
+              <div class="swiper-slide">
+                <img src="images/slide3.png" alt="game place" />
+              </div>
+            </div>
+            <div class="swiper-btn-next">
+              <img src="images/arrow.svg" alt="arrow" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
