@@ -74,10 +74,6 @@ const colors = [
   },
 ];
 
-/*
-<button style="background-color: #FF0000">red</button>
-*/
-
 const container = document.createElement("div");
 
 for (const button of colors) {
