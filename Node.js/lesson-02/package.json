@@ -1,0 +1,16 @@
+{
+  "name": "lesson-02",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "license": "ISC",
+  "author": "Alexey Simak <aleksim.dev@gmail.com>",
+  "type": "module",
+  "devDependencies": {
+    "del": "^7.1.0",
+    "gulp": "^4.0.2",
+    "gulp-sass": "^5.1.0",
+    "sass": "^1.66.1"
+  }
+}

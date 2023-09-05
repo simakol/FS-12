@@ -1,0 +1,29 @@
+$text-color: gold;
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+h1 {
+  color: $text-color;
+  text-align: center;
+  font-size: 50px;
+}
+
+// .box a
+
+.box {
+  @include flex-between;
+
+  a {
+    text-decoration: none;
+    color: $text-color;
+    font-size: 35px;
+
+    // &:not(:last-child) {
+    //   margin-right: 50px;
+    // }
+  }
+}
