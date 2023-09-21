@@ -22,7 +22,7 @@
  *   2.4. задати контент (Х О) для клітинки та змінити гравця
  */
 
-const combination = [
+const combinations = [
   [1, 2, 3],
   [4, 5, 6],
   [7, 8, 9],
@@ -32,6 +32,19 @@ const combination = [
   [3, 5, 7],
   [3, 6, 9],
 ];
+
+// const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+// const arr2 = [1, 3, 4, 5, 7];
+
+// // some - повертає true якщо хоча б один елмент масиву проходить перевірку функції
+// console.log(arr2.some((num) => num % 2 === 0));
+
+// // every - повертає true якщо кожен елемент масиву проходить перевірку функції (якщо хоча б один не проходить повертається false)
+// console.log(arr2.every((num) => num % 2 === 0));
+
+// // includes - повертає true якщо в масиві є значення, яке ми шукаємо і false якщо цього значення немає
+
+// console.log(arr.includes(55));
 
 // масиви для зберігання історії ходів для гравців
 const historyX = [];
@@ -45,8 +58,60 @@ createMarkup();
 
 content.addEventListener("click", handleClick); // вішаємо обробник подій по кліку на батьківський контейнер
 
-function handleClick() {
-  console.log("Clicked!");
+function handleClick(event) {
+  // перевірка, коли ми клікнули на контейнер або у клітинці вже є текст - виходимо з функції (паттерн раннє повернення)
+  if (event.target === event.currentTarget || event.target.textContent) return;
+
+  let winner = false;
+  const id = Number(event.target.dataset.id); // отримуємо айді поточної клітинки через data атрибут id
+
+  //перевірка на поточного гравця
+  if (player === "X") {
+    historyX.push(id); // додаємо айді клітинки у масив історії ходів
+    winner = historyX.length >= 3 ? checkWinner(historyX) : false; // якщо гравець зробив більше ніж 3 ходи - перевіряємо чи виграв він, чи ні, а якщо ходів менше - він поки що не виграв
+  } else {
+    historyO.push(id);
+    winner = historyO.length >= 3 ? checkWinner(historyO) : false;
+  }
+  event.target.textContent = player;
+
+  if (winner) {
+    console.log(`Гравець ${player} переміг`);
+
+    const instance = basicLightbox.create(
+      `<div class="box"><h1>Гравець ${player} переміг</h1></div>`
+    );
+    instance.show();
+
+    resetGame();
+    return;
+  }
+
+  if (!winner && historyX.length + historyO.length === 9) {
+    const instance = basicLightbox.create(
+      `<div class="box"><h1>Нічія!</h1></div>`
+    );
+    instance.show();
+
+    resetGame();
+    return;
+  }
+
+  player = player === "X" ? "O" : "X";
+}
+
+function checkWinner(history) {
+  // у масиві комбінацій потрібно знайти хоча б одну комбінацію, щоб масив історій мав всі айді цієї комбінації
+  return combinations.some((combination) =>
+    combination.every((id) => history.includes(id))
+  );
+}
+
+function resetGame() {
+  createMarkup(); // очищуємо поле
+  player = "X"; // задаємо початкового гравця
+  historyX.splice(0); // очищуємо масиви історій (вирізаючи з них всі елементи починаючи з 0го)
+  historyO.splice(0);
 }
 
 function createMarkup() {
