@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bank Account</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="balance"><span id="balance">0</span> UAH</h1>
+      <form id="form" class="main-form">
+        <input
+          type="number"
+          required
+          placeholder="Enter amount"
+          name="amount"
+        />
+        <select name="type">
+          <option value="deposit">deposit</option>
+          <option value="withdraw">withdraw</option>
+        </select>
+        <button type="submit">Enter</button>
+      </form>
+
+      <h2 class="title">Transactions history</h2>
+      <ul id="transactionsHistory"></ul>
+    </div>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
