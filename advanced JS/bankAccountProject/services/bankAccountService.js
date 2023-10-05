@@ -6,6 +6,7 @@ export default class BankAccount {
   };
   #balance;
 
+  // конструктор - це метод, який викликається під час створення екземпляру класу через оператор new
   constructor() {
     this.#balance = 0;
     this.transactionHistory = [];
@@ -26,28 +27,39 @@ export default class BankAccount {
 
   deposit(amount) {
     if (amount <= 0) {
-      console.log(`❌ Не можна покласти відʼємну суму! ${this.getBalance()}`);
-      return;
+      Notiflix.Notify.failure(
+        `Не можна покласти відʼємну суму! ${this.getBalance()}`
+      );
     }
 
     this.#balance += amount;
-    console.log(`✅ 💵 Успішно зачислено ${amount} грн. ${this.getBalance()}`);
     this.createTransaction(amount, BankAccount.TRANSACTIONS_TYPE.deposit);
+    Notiflix.Notify.success(
+      `💵 Успішно зачислено ${amount} грн. ${this.getBalance()}`
+    );
   }
 
   withdraw(amount) {
     if (amount <= 0) {
-      console.log(`❌ Не можна зняти відʼємну суму! ${this.getBalance()}`);
+      Notiflix.Notify.failure(
+        `Не можна зняти відʼємну суму! ${this.getBalance()}`
+      );
     } else if (amount > this.#balance) {
-      console.log(`❌ Недостаньо коштів! ${this.getBalance()}`);
+      Notiflix.Notify.failure(`Недостаньо коштів! ${this.getBalance()}`);
     } else {
       this.#balance -= amount;
-      console.log(`✅ 💸 Успішно знято ${amount} грн. ${this.getBalance()}`);
       this.createTransaction(amount, BankAccount.TRANSACTIONS_TYPE.withdraw);
+      Notiflix.Notify.success(
+        `💸 Успішно знято ${amount} грн. ${this.getBalance()}`
+      );
     }
   }
 
   getBalance() {
     return `Поточний баланс: ${this.#balance} грн.`;
+  }
+
+  get balance() {
+    return this.#balance;
   }
 }
