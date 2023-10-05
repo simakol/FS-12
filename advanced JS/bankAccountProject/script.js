@@ -1,9 +1,11 @@
 import BankAccount from "./services/bankAccountService.js";
 
-const account = new BankAccount();
+const LS_KEY = "account";
+const account = new BankAccount(JSON.parse(localStorage.getItem(LS_KEY)) ?? {});
 
 console.log(account);
 
+localStorage.setItem(LS_KEY, JSON.stringify(account));
 /*
 1. отримаємо посилання на всі дом елементи через id
 2. вішаємо обробник подій (addEventListener) на форму по події submit
@@ -18,6 +20,9 @@ const refs = {
   form: document.getElementById("form"),
   transactionsHistory: document.getElementById("transactionsHistory"),
 };
+
+updateBalanceText();
+updateTransactionsHistory();
 
 refs.form.addEventListener("submit", handleSumbit);
 
@@ -38,10 +43,34 @@ function handleSumbit(event) {
     account.withdraw(Number(amount.value));
   }
 
+  localStorage.setItem(LS_KEY, JSON.stringify(account));
   event.currentTarget.reset();
   updateBalanceText();
+  updateTransactionsHistory();
 }
 
 function updateBalanceText() {
-  refs.balance.textContent = account.balance;
+  refs.balance.textContent = JSON.parse(localStorage.getItem(LS_KEY)).balance;
+}
+
+function updateTransactionsHistory() {
+  refs.transactionsHistory.innerHTML = createMarkup(
+    JSON.parse(localStorage.getItem(LS_KEY)).transactionHistory
+  );
+}
+
+function createMarkup(arr) {
+  return arr
+    .map(
+      ({ amount, type, id, currentBalance }) => `
+  <li class="transaction-item ${
+    type === BankAccount.TRANSACTIONS_TYPE.deposit ? "deposit" : "withdraw"
+  }" data-id="${id}">
+    <h2>Сума транзакції: ${amount} UAH</h2>
+    <h3>Тип транзакції: ${type}</h3>
+    <h4>Поточний баланс: ${currentBalance} UAH</h4>
+  </li>
+  `
+    )
+    .join("");
 }
