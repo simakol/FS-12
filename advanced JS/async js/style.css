@@ -3,6 +3,10 @@
   padding: 0;
 }
 
+body {
+  font-family: sans-serif;
+}
+
 .content {
   width: 650px;
   height: 400px;
@@ -24,4 +28,86 @@
   background-color: black;
   width: 100px;
   border-bottom-right-radius: 10px;
+}
+
+/* =============== */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.balance {
+  margin: 40px 0;
+  text-align: center;
+  font-size: 50px;
+}
+
+.balance > span {
+  color: green;
+}
+.dollar-sign::after {
+  content: "\0024";
+}
+
+.cars-container {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  margin-bottom: 100px;
+}
+
+.car-item {
+  padding: 30px 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 3px 3px 6px black;
+  position: relative;
+}
+
+.car-item > img {
+  width: 400px;
+}
+
+.rigth-side {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.car-price {
+  margin-bottom: 8px;
+  font-size: 30px;
+}
+
+.car-bet {
+  font-size: 23px;
+}
+
+.car-bet-button {
+  margin-top: 40px;
+  border: none;
+  font-size: 40px;
+  background-color: #fff;
+  padding: 10px 15px;
+  box-shadow: 3px 3px 6px green;
+  border-radius: 10px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.car-bet-button:hover {
+  font-size: 45px;
+}
+
+.count-down-time {
+  font-weight: bold;
+  position: absolute;
+  font-size: 30px;
+  width: 30%;
+  text-align: center;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }

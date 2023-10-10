@@ -7,10 +7,33 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="content" id="modal">
+    <!-- <div class="content" id="modal">
       <span class="text" id="text"></span>
-    </div>
+    </div> -->
+    <div class="container">
+      <h1 class="balance">
+        Ваш баланс: <span id="balance" class="dollar-sign">100</span>
+      </h1>
 
+      <div class="cars-container" id="carsContainer">
+        <div class="car-item">
+          <img
+            src="https://porsche.ua/storage/local/assetPreview/image/porsche-911-carrera.webp"
+            alt="porsche 911"
+          />
+          <div class="rigth-side">
+            <div>
+              <h2 class="car-price dollar-sign">Ціна: 250.000</h2>
+              <h3 class="car-bet dollar-sign">Ставка: 250.100</h3>
+            </div>
+            <button class="car-bet-button" type="button">Підняти ставку</button>
+          </div>
+          <p class="count-down-time">
+            До кінця лоту лишилось <span>10</span> секунд
+          </p>
+        </div>
+      </div>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>
