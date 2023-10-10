@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.content {
+  width: 650px;
+  height: 400px;
+  font-size: 70px;
+  font-weight: bold;
+  color: red;
+  font-family: sans-serif;
+  background-image: url(https://ireland.apollo.olxcdn.com/v1/files/r1bs7xtaf7d41-UA/image);
+  background-size: cover;
+  margin: 50px auto;
+  border: 10px solid black;
+  border-radius: 10px;
+  box-shadow: 3px 3px 5px black;
+}
+
+.text {
+  text-align: center;
+  display: inline-block;
+  background-color: black;
+  width: 100px;
+  border-bottom-right-radius: 10px;
+}
