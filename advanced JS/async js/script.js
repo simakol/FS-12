@@ -115,6 +115,22 @@ const cars = [
     id: 3,
     time: 60,
   },
+  {
+    img: "https://purepng.com/public/uploads/large/purepng.com-tesla-model-x-white-carcarvehicletransporttesla-961524644652ppllh.png",
+    name: "Tesla model x",
+    price: 120000,
+    bet: 120100,
+    id: 4,
+    time: 20,
+  },
+  {
+    img: "https://media.sketchfab.com/models/d51fcd44b74f4daf8012c41e0400c041/thumbnails/9391e698146043e5a46477b5aa2d1293/08a1328593d7452eab8d66b869d3fa47.jpeg",
+    name: "Mazda miata",
+    price: 50000,
+    bet: 50100,
+    id: 5,
+    time: 20,
+  },
 ];
 
 updateBalance(bankAccount);
@@ -196,7 +212,9 @@ function setCarTimer(car) {
   const timeoutId = setTimeout(() => {
     clearInterval(intervalId);
     findCar.remove();
+    Notiflix.Notify.success(`Ви викупили машину ${car.name}`);
   }, car.time * 1000);
+
   findCar.dataset.timeoutId = timeoutId;
 }
 
