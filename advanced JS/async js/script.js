@@ -62,3 +62,144 @@
 // }, 1000 * counter);
 
 //! Аукціон автомобілів: Є карточки з автомобілями під якими є поточна ставка, кнопка підвищити ставку і таймер. При натисканні на кнопку підвищити ставку з нашого балансу списується 100 у. о. і таймер повертається назад. Початково таймер заданий у 30 секунд, якщо час вийде, то машина повинна пропадати, а нам повинні сказати, що ми виграли аукціон.
+
+const refs = {
+  carsContainer: document.getElementById("carsContainer"),
+  balance: document.getElementById("balance"),
+};
+
+const bankAccount = {
+  balance: 10000,
+  bet() {
+    if (this.balance >= 100) {
+      this.balance -= 100;
+      Notiflix.Notify.success("Успішна ставка!");
+      return 100;
+    } else {
+      Notiflix.Notify.failure("Недостатньо коштів!");
+      return 0;
+    }
+  },
+};
+
+const cars = [
+  {
+    img: "https://porsche.ua/storage/local/assetPreview/image/porsche-911-carrera.webp",
+    name: "Porsche 911 carrera",
+    price: 250000,
+    bet: 250100,
+    id: 0,
+    time: 30,
+  },
+  {
+    img: "https://www.mrcollection.com/wp-content/uploads/2018/03/lamborghini-huracan-performante-spyder_06.jpg",
+    name: "Lamborghini huracan spider",
+    price: 350000,
+    bet: 350100,
+    id: 1,
+    time: 40,
+  },
+  {
+    img: "https://imgd.aeplcdn.com/1280x720/n/cw/ec/50723/m5-exterior-right-front-three-quarter-2.jpeg?q=80",
+    name: "BMW M5 competition",
+    price: 150000,
+    bet: 150100,
+    id: 2,
+    time: 50,
+  },
+  {
+    img: "https://d2ivfcfbdvj3sm.cloudfront.net/7fc965ab77efe6e0fa62e4ca1ea7673bb25e4758081e3d8e88cb10/stills_0640_png/MY2021/14693/14693_st0640_116.png",
+    name: "Audi rs7",
+    price: 180000,
+    bet: 180100,
+    id: 3,
+    time: 60,
+  },
+];
+
+updateBalance(bankAccount);
+fillCarsList(cars);
+startCountDownTime(cars);
+
+refs.carsContainer.addEventListener("click", handleBet);
+
+function handleBet(event) {
+  if (!event.target.classList.contains("car-bet-button")) return;
+
+  const amount = bankAccount.bet();
+  updateBalance(bankAccount);
+
+  const carItem = event.target.closest(".car-item");
+  const carBet = Number(carItem.dataset.bet) + amount;
+  carItem.dataset.bet = carBet;
+  event.target.parentElement.children[0].children[1].children[0].textContent =
+    carBet;
+
+  const findCar = cars.find((el) => el.id === Number(carItem.dataset.id));
+
+  setCarTimer(findCar);
+}
+
+function fillCarsList(cars) {
+  const markup = createCarsMarkup(cars);
+  refs.carsContainer.innerHTML = markup;
+}
+
+function createCarsMarkup(cars) {
+  return cars
+    .map(
+      ({ img, name, price, id, bet, time }) => `
+    <div class="car-item" data-id="${id}" data-bet="${bet}">
+          <div>
+            <h2 class="car-name">${name}</h2>
+            <img
+              src="${img}"
+              alt="${name}"
+            />
+          </div>
+          <div class="rigth-side">
+            <div>
+              <h2 class="car-price dollar-sign">Ціна: ${price}</h2>
+              <h3 class="car-bet dollar-sign">Ставка: <span>${bet}</span></h3>
+            </div>
+            <button class="car-bet-button" type="button">Підняти ставку</button>
+          </div>
+          <p class="count-down-time">
+            До кінця лоту лишилось <span id="time-${id}">${time}</span> секунд
+          </p>
+        </div>
+    `
+    )
+    .join("");
+}
+
+function startCountDownTime(cars) {
+  for (const car of cars) {
+    setCarTimer(car);
+  }
+}
+
+function setCarTimer(car) {
+  const carsContainer = [...refs.carsContainer.children];
+
+  const findCar = carsContainer.find((el) => Number(el.dataset.id) === car.id);
+  const carTime = findCar.children[2].children[0];
+  clearTimeout(findCar.dataset.timeoutId);
+  clearInterval(findCar.dataset.intervalId);
+  carTime.textContent = car.time;
+
+  const intervalId = setInterval(() => {
+    carTime.textContent = Number(carTime.textContent) - 1;
+  }, 1000);
+  findCar.dataset.intervalId = intervalId;
+
+  const timeoutId = setTimeout(() => {
+    clearInterval(intervalId);
+    findCar.remove();
+  }, car.time * 1000);
+  findCar.dataset.timeoutId = timeoutId;
+}
+
+function updateBalance({ balance }) {
+  refs.balance.textContent = balance;
+}
