@@ -1,6 +1,7 @@
 const refs = {
   count: document.getElementById("count"),
   list: document.getElementById("list"),
+  errorText: document.getElementById("errorText"),
 };
 
 getCharacters()
@@ -9,7 +10,10 @@ getCharacters()
     console.log(data);
     refs.list.insertAdjacentHTML("beforeend", createMarkup(data.results));
   })
-  .catch((err) => console.log(err));
+  .catch((err) => {
+    console.log(err);
+    refs.errorText.textContent = err;
+  });
 
 function createMarkup(arr) {
   return arr
@@ -36,7 +40,7 @@ function getCharacters() {
   return fetch(`${BASE_URL}/${ENDPOINT}`).then((data) => {
     if (!data.ok) {
       // перевіряю, якщо data.ok === false, тобто запит виконався неуспішно (наприклад, помилка 404)
-      throw new Error(`Fetch error: ${data.statusText}`); // то я вручну викидую помилку, яка потім зловиться в блоці catch
+      throw new Error("Fetch error"); // то я вручну викидую помилку, яка потім зловиться в блоці catch
     }
 
     return data.json(); // дістаємо відповідь від серверу з обʼєкту Response і перетворюємо JSON на звичайний javascript (тому що дані на сервері у 99% випадках зберігаються у форматі JSON, але треба читати документацію щоб точно в цьому переконатись!)
