@@ -9,11 +9,26 @@
   <body>
     <div class="container">
       <h1>Rich and Morty characters</h1>
-      <h2>Amount: <span id="count">0</span></h2>
+      <h2>Amount: <span id="count" class="selected">0</span></h2>
+      <h2>Current Page: <span id="currentPage" class="selected">1</span></h2>
       <ul id="list" class="characters-list"></ul>
       <p id="errorText"></p>
-      <button type="button" id="loadMoreBtn" class="load-more-btn">Load More</button>
+      <!-- load more -->
+      <!-- <button type="button" id="loadMoreBtn" class="load-more-btn">
+        Load More
+      </button> -->
+      <!-- pagination 1 2 3 -->
+      <div class="pagination" id="pagination">
+        <button id="prev"><</button>
+        <button class="pagination-page" data-page="1">1</button>
+        <button class="pagination-page" data-page="2">2</button>
+        <button class="pagination-page" data-page="3">3</button>
+        <button id="next">></button>
+      </div>
     </div>
-    <script src="script.js"></script>
+    <!-- load more -->
+    <!-- <script src="script.js"></script> -->
+    <!-- pagination 1 2 3 -->
+    <script src="script2.js"></script>
   </body>
 </html>
