@@ -48,6 +48,11 @@ h2 {
   width: 100%;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
+  height: 335px;
+  background-image: url("./rm.jpeg");
+  background-position: 0 0;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .characters-list > li > h2 {
