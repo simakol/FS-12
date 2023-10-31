@@ -1,0 +1,30 @@
+.button-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.add-car-btn {
+  font-size: 50px;
+  font-family: sans-serif;
+  padding: 15px 20px;
+  background-color: hsl(350, 71%, 37%);
+  color: white;
+  border: 5px solid black;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.add-car-form {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  padding: 150px 100px;
+}
+
+.add-car-form > * {
+  font-size: 50px;
+}
+.add-car-form > input.incorrect {
+  border-color: red;
+}
