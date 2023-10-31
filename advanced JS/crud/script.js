@@ -67,7 +67,6 @@ function handleSubmit(event) {
 2. перевірка на те, що ми взагалі щось ввели в поле вводу (для всіх полів)
 */
 
-
   if (
     !isMarkValid(mark.value, mark) ||
     !isModelValid(model.value, model) ||
@@ -84,6 +83,7 @@ function handleSubmit(event) {
 
   createNewCar(newCar);
   event.currentTarget.reset();
+  //TODO: додати повідомлення про успішу відправку форми + закрити модальне вікно
 }
 
 //TODO: зробити рефактор коду для того, щоб у нас не було дублювання коду!
