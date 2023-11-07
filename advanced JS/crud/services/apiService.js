@@ -15,4 +15,8 @@ function createNewCar(carObj) {
   return axios.post(`${BASE_URL}/${ENDPOINT}`, carObj);
 }
 
-export { createNewCar };
+async function getAllCars() {
+  return (await axios.get(`${BASE_URL}/${ENDPOINT}`)).data;
+}
+
+export { createNewCar, getAllCars };

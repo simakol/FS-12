@@ -14,7 +14,7 @@ import {
   isMarkValid,
   isImgValid,
 } from "./functions/validation.js";
-import { createNewCar } from "./services/apiService.js";
+import { createNewCar, getAllCars } from "./services/apiService.js";
 
 const refs = {
   addCarBtn: document.getElementById("addCarBtn"),
@@ -31,7 +31,14 @@ const instance = basicLightbox.create(
 `
 );
 
+loadFirstData();
+
 refs.addCarBtn.addEventListener("click", handleClick);
+
+async function loadFirstData() {
+  const cars = await getAllCars();
+  console.log(cars);
+}
 
 function handleClick() {
   instance.show();
