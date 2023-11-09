@@ -21,6 +21,7 @@ import createCarCardMarkup from "./templates/carCard.js";
 const refs = {
   addCarBtn: document.getElementById("addCarBtn"),
   carsContainer: document.getElementById("carsContainer"),
+  msg: document.getElementById("msg"),
 };
 
 const instance = createModalWindow();
@@ -28,12 +29,27 @@ const instance = createModalWindow();
 loadFirstData();
 
 refs.addCarBtn.addEventListener("click", handleClick);
+refs.carsContainer.addEventListener("click", handleCarsClick);
+
+function handleCarsClick(event) {
+  if (!event.target.classList.contains("delete-car")) {
+    return;
+  }
+  // console.log(event.target);
+  const targetCar = event.target.closest(".car-card");
+  // console.log(targetCar);
+  const deleteId = Number(targetCar.dataset.id);
+  console.log(deleteId);
+  targetCar.remove();
+}
 
 async function loadFirstData() {
+  refs.msg.textContent = "Loading...";
   const cars = await getAllCars();
   console.log(cars);
   const carsMarkup = cars.map((car) => createCarCardMarkup(car)).join("");
   addCarToPage(carsMarkup);
+  refs.msg.textContent = "";
 }
 
 function addCarToPage(markup) {
@@ -70,4 +86,5 @@ function handleSubmit(event) {
   event.currentTarget.reset();
   Notiflix.Notify.success("Added new car!");
   instance.close();
+  addCarToPage(createCarCardMarkup(newCar));
 }

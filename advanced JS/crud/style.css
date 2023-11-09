@@ -28,3 +28,70 @@
 .add-car-form > input.incorrect {
   border-color: red;
 }
+
+.cars-container {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
+  padding: 0 30px;
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+
+.car-card {
+  width: 30%;
+  border-radius: 15px;
+  text-align: center;
+  font-family: sans-serif;
+  box-shadow: 3px 2px 5px black;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.car-card > img {
+  width: 100%;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+}
+.car-card-titles > h2 {
+  position: relative;
+}
+.car-card-titles > h2::before {
+  content: "";
+  position: absolute;
+  width: 70%;
+  height: 3px;
+  border-radius: 20px;
+  background-color: transparent;
+  box-shadow: 3px 2px 5px black;
+
+  top: -20px;
+  left: 0;
+}
+
+.delete-car {
+  background-color: transparent;
+  color: red;
+  box-shadow: 2px 2px 3px black;
+  border-radius: 10px;
+  padding: 7px 15px;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  transition: 0.5s;
+  font-weight: bold;
+}
+
+.delete-car:hover {
+  box-shadow: 4px 4px 3px red;
+}
+
+#msg {
+  text-align: center;
+  font-size: 40px;
+  font-family: sans-serif;
+}
