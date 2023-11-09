@@ -15,21 +15,15 @@ import {
   isImgValid,
 } from "./functions/validation.js";
 import { createNewCar, getAllCars } from "./services/apiService.js";
+import createModalWindow from "./templates/modalWindow.js";
+import createCarCardMarkup from "./templates/carCard.js";
 
 const refs = {
   addCarBtn: document.getElementById("addCarBtn"),
+  carsContainer: document.getElementById("carsContainer"),
 };
 
-const instance = basicLightbox.create(
-  `
-<form class="add-car-form" id="carForm">
-      <input type="text" placeholder="Mark" name="mark" required>
-      <input type="text" placeholder="Model" name="model" required>
-      <input type="url" placeholder="Image URL" name="img" required>
-      <button type="submit">Add car</button>
-  </form>
-`
-);
+const instance = createModalWindow();
 
 loadFirstData();
 
@@ -38,6 +32,12 @@ refs.addCarBtn.addEventListener("click", handleClick);
 async function loadFirstData() {
   const cars = await getAllCars();
   console.log(cars);
+  const carsMarkup = cars.map((car) => createCarCardMarkup(car)).join("");
+  addCarToPage(carsMarkup);
+}
+
+function addCarToPage(markup) {
+  refs.carsContainer.insertAdjacentHTML("beforeend", markup);
 }
 
 function handleClick() {
