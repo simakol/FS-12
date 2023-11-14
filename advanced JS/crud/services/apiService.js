@@ -19,4 +19,12 @@ async function getAllCars() {
   return (await axios.get(`${BASE_URL}/${ENDPOINT}`)).data;
 }
 
-export { createNewCar, getAllCars };
+function deleteCar(id) {
+  return axios.delete(`${BASE_URL}/${ENDPOINT}/${id}`);
+}
+
+function updateCar(id, updatedCarObj) {
+  return axios.put(`${BASE_URL}/${ENDPOINT}/${id}`, updatedCarObj);
+}
+
+export { createNewCar, getAllCars, deleteCar, updateCar };
