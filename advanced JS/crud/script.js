@@ -27,6 +27,8 @@ const refs = {
   addCarBtn: document.getElementById("addCarBtn"),
   carsContainer: document.getElementById("carsContainer"),
   msg: document.getElementById("msg"),
+  markFilter: document.getElementById("markFilter"),
+  sortFilter: document.getElementById("sortFilter"),
 };
 
 const instance = createModalWindow();
@@ -36,52 +38,74 @@ loadFirstData();
 refs.addCarBtn.addEventListener("click", handleClick);
 refs.carsContainer.addEventListener("click", handleCarsClick);
 
-async function handleCarsClick(event) {
-  //TODO: винести в окрему фн
+function handleCarsClick(event) {
   if (event.target.classList.contains("delete-car")) {
-    const targetCar = event.target.closest(".car-card");
-    const deleteId = Number(targetCar.dataset.id);
-    console.log(deleteId);
-    try {
-      await deleteCar(deleteId);
-      Notiflix.Notify.success(`Car successfully delete!`);
-    } catch (err) {
-      Notiflix.Notify.failure(`Error! We can't delete this car`);
-    }
-    targetCar.remove();
-    return;
+    return deleteMarkupCar(event);
   }
 
   if (event.target.classList.contains("edit-car")) {
-    const targetCar = event.target.closest(".car-card");
-    const carId = targetCar.dataset.id;
-    console.log(carId);
-    const cars = await getAllCars();
-    console.log(cars);
-    const currentCar = cars.find(({ id }) => id === carId);
-    console.log(currentCar);
-    instance.show();
-
-    const carForm = document.getElementById("carForm");
-
-    carForm.elements.mark.value = currentCar.mark;
-    carForm.elements.model.value = currentCar.model;
-    carForm.elements.img.value = currentCar.img;
-    carForm.elements.submit.textContent = "Edit car";
-
-    carForm.addEventListener("submit", (event) =>
-      handleEditCarForm(event, carId, targetCar)
-    );
+    return editMarkupCar(event);
   }
+}
+
+async function deleteMarkupCar(event) {
+  const targetCar = event.target.closest(".car-card");
+  const deleteId = Number(targetCar.dataset.id);
+  console.log(deleteId);
+  try {
+    await deleteCar(deleteId);
+    await addCarMarksToFilter();
+    Notiflix.Notify.success(`Car successfully delete!`);
+    targetCar.remove();
+  } catch (err) {
+    Notiflix.Notify.failure(`Error! We can't delete this car`);
+  }
+  return;
+}
+
+async function editMarkupCar(event) {
+  const targetCar = event.target.closest(".car-card");
+  const carId = targetCar.dataset.id;
+  const cars = await getAllCars();
+  const currentCar = cars.find(({ id }) => id === carId);
+  console.log(currentCar);
+  instance.show();
+
+  const carForm = document.getElementById("carForm");
+
+  carForm.elements.mark.value = currentCar.mark;
+  carForm.elements.model.value = currentCar.model;
+  carForm.elements.img.value = currentCar.img;
+  carForm.elements.submit.textContent = "Edit car";
+
+  carForm.addEventListener("submit", (event) =>
+    handleEditCarForm(event, carId, targetCar)
+  );
 }
 
 async function loadFirstData() {
   refs.msg.textContent = "Loading...";
   const cars = await getAllCars();
-  console.log(cars);
   const carsMarkup = cars.map((car) => createCarCardMarkup(car)).join("");
   addCarToPage(carsMarkup);
   refs.msg.textContent = "";
+
+  addCarMarksToFilter();
+}
+
+async function addCarMarksToFilter() {
+  const cars = await getAllCars();
+  const carsMarks = cars.map(({ mark }) => mark);
+  const uniqueCarsMarks = carsMarks.filter(
+    (car, i) => carsMarks.indexOf(car) === i
+  );
+
+  const markup = uniqueCarsMarks
+    .map((mark) => ` <option value="${mark}">${mark}</option>`)
+    .join("");
+
+  console.log(uniqueCarsMarks);
+  refs.markFilter.innerHTML = ` <option value="default">Filter cars by mark</option> ${markup}`;
 }
 
 function addCarToPage(markup) {
@@ -117,6 +141,7 @@ function handleSubmit(event) {
     img: img.value,
   };
 
+  addCarMarksToFilter();
   createNewCar(newCar);
   event.currentTarget.reset();
   Notiflix.Notify.success("Added new car!");
@@ -124,7 +149,7 @@ function handleSubmit(event) {
   addCarToPage(createCarCardMarkup(newCar));
 }
 
-function handleEditCarForm(event, carId, targetCar) {
+async function handleEditCarForm(event, carId, targetCar) {
   event.preventDefault();
   const { mark, model, img } = event.currentTarget.elements;
 
@@ -142,7 +167,13 @@ function handleEditCarForm(event, carId, targetCar) {
     img: img.value,
   };
 
-  updateCar(carId, updatedCar);
+  try {
+    await updateCar(carId, updatedCar);
+    await addCarMarksToFilter();
+  } catch (err) {
+    Notiflix.Notify.failure(`Error! We can't delete this car`);
+    return;
+  }
 
   const { img: imgEl, titles } = targetCar.children;
   const { mark: markEl, model: modelEl } = titles.children;
@@ -151,7 +182,7 @@ function handleEditCarForm(event, carId, targetCar) {
   markEl.textContent = updatedCar.mark;
   modelEl.textContent = updatedCar.model;
 
-  event.currentTarget.reset();
+  event.target.reset();
   Notiflix.Notify.success("Successfully updated car!");
   instance.close();
 }

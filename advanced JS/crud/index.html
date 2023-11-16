@@ -19,16 +19,28 @@ https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.css
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="button-container">
-      <button type="button" class="add-car-btn" id="addCarBtn">
-        Add new car
-      </button>
+    <div class="container">
+      <div class="button-container">
+        <button type="button" class="add-car-btn" id="addCarBtn">
+          Add new car
+        </button>
+      </div>
+
+      <div class="filters">
+        <select class="filters sort-filter" id="sortFilter">
+          <option value="default">Sort cars</option>
+          <option value="az">A-Z</option>
+          <option value="za">Z-A</option>
+        </select>
+        <select class="filters mark-filter" id="markFilter">
+          <option value="default">Filter cars by mark</option>
+        </select>
+      </div>
+
+      <p id="msg"></p>
+
+      <div class="cars-container" id="carsContainer"></div>
     </div>
-
-    <p id="msg"></p>
-    
-    <div class="cars-container" id="carsContainer"></div>
-
     <script src="
     https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js
     "></script>

@@ -6,7 +6,7 @@ export default function createCarCardMarkup({ mark, model, id, img }) {
         <h2 name="mark">${mark}</h2>
         <h3 name="model">${model}</h3>
        </div>
-        <button type="button" class="delete-car">X</button>
+        <button type="button" class="delete-car">Delete</button>
         <button type="button" class="edit-car">Edit</button>
     </div>
     `;
