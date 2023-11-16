@@ -23,6 +23,8 @@ import {
 import createModalWindow from "./templates/modalWindow.js";
 import createCarCardMarkup from "./templates/carCard.js";
 
+//TODO: пофіксити додавання і редагування машин
+
 const refs = {
   addCarBtn: document.getElementById("addCarBtn"),
   carsContainer: document.getElementById("carsContainer"),
@@ -35,8 +37,41 @@ const instance = createModalWindow();
 
 loadFirstData();
 
+refs.sortFilter.addEventListener("change", handleSortChange);
+refs.markFilter.addEventListener("change", handleMarkChange);
 refs.addCarBtn.addEventListener("click", handleClick);
 refs.carsContainer.addEventListener("click", handleCarsClick);
+
+// todo: поєднати сортування і фільтрацію
+async function handleSortChange(event) {
+  const cars = await getAllCars();
+
+  switch (event.target.value) {
+    case "az":
+      cars.sort((a, b) => a.mark.localeCompare(b.mark));
+      break;
+    case "za":
+      cars.sort((a, b) => b.mark.localeCompare(a.mark));
+      break;
+  }
+
+  const carsMarkup = cars.map((car) => createCarCardMarkup(car)).join("");
+  refs.carsContainer.innerHTML = carsMarkup;
+}
+
+async function handleMarkChange(event) {
+  const cars = await getAllCars();
+
+  const filteredCars =
+    event.target.value === "default"
+      ? cars
+      : cars.filter(({ mark }) => mark === event.target.value);
+
+  const carsMarkup = filteredCars
+    .map((car) => createCarCardMarkup(car))
+    .join("");
+  refs.carsContainer.innerHTML = carsMarkup;
+}
 
 function handleCarsClick(event) {
   if (event.target.classList.contains("delete-car")) {
@@ -78,6 +113,8 @@ async function editMarkupCar(event) {
   carForm.elements.model.value = currentCar.model;
   carForm.elements.img.value = currentCar.img;
   carForm.elements.submit.textContent = "Edit car";
+
+  carForm.removeEventListener("submit", handleSubmit);
 
   carForm.addEventListener("submit", (event) => {
     console.log("Edit!");
