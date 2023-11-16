@@ -109,3 +109,32 @@
   border-bottom-right-radius: 15px;
   cursor: pointer;
 }
+
+.filters-container {
+  display: flex;
+  gap: 50px;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.filters {
+  font-size: 24px;
+  border-radius: 15px;
+  padding: 10px 15px;
+  box-shadow: 3px 2px 5px rgb(33, 111, 89);
+  border: none;
+  outline: none;
+  text-align: center;
+}
+
+.reset-filters-btn {
+  font-size: 24px;
+  border-radius: 15px;
+  padding: 10px 20px;
+  color: #fff;
+  background-color: rgb(33, 111, 89);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

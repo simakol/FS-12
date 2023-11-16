@@ -68,7 +68,8 @@ async function editMarkupCar(event) {
   const carId = targetCar.dataset.id;
   const cars = await getAllCars();
   const currentCar = cars.find(({ id }) => id === carId);
-  console.log(currentCar);
+  console.log(currentCar, cars, carId);
+  console.log(targetCar);
   instance.show();
 
   const carForm = document.getElementById("carForm");
@@ -78,9 +79,10 @@ async function editMarkupCar(event) {
   carForm.elements.img.value = currentCar.img;
   carForm.elements.submit.textContent = "Edit car";
 
-  carForm.addEventListener("submit", (event) =>
-    handleEditCarForm(event, carId, targetCar)
-  );
+  carForm.addEventListener("submit", (event) => {
+    console.log("Edit!");
+    handleEditCarForm(event, carId, targetCar);
+  });
 }
 
 async function loadFirstData() {
@@ -122,7 +124,7 @@ function handleClick() {
   carForm.addEventListener("submit", handleSubmit);
 }
 
-function handleSubmit(event) {
+async function handleSubmit(event) {
   event.preventDefault(); // відміняє поведінку браузера за замовчуванням (наприклад, коли відбувається подія сабміту, тобто, відправка форми - браузер за замовчуванням перезавантажує сторінку)
   const { mark, model, img } = event.currentTarget.elements;
   console.log(mark.value, model.value, img.value);
@@ -141,12 +143,19 @@ function handleSubmit(event) {
     img: img.value,
   };
 
-  addCarMarksToFilter();
-  createNewCar(newCar);
-  event.currentTarget.reset();
-  Notiflix.Notify.success("Added new car!");
-  instance.close();
-  addCarToPage(createCarCardMarkup(newCar));
+  try {
+    const {
+      data: { id },
+    } = await createNewCar(newCar);
+    await addCarMarksToFilter();
+    event.target.reset();
+    Notiflix.Notify.success("Added new car!");
+    instance.close();
+    addCarToPage(createCarCardMarkup({ ...newCar, id }));
+  } catch (err) {
+    Notiflix.Notify.failure("Can not add a new car!");
+    return;
+  }
 }
 
 async function handleEditCarForm(event, carId, targetCar) {
