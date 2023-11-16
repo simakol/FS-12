@@ -42,7 +42,7 @@ refs.markFilter.addEventListener("change", handleMarkChange);
 refs.addCarBtn.addEventListener("click", handleClick);
 refs.carsContainer.addEventListener("click", handleCarsClick);
 
-// todo: поєднати сортування і фільтрацію
+// todo: відключати сортування коли активна фільтрація і навпаки
 async function handleSortChange(event) {
   const cars = await getAllCars();
 
