@@ -23,7 +23,6 @@ import {
 import createModalWindow from "./templates/modalWindow.js";
 import createCarCardMarkup from "./templates/carCard.js";
 
-//TODO: якщо при видаленні автомобіля в фільтрації машин не лишилось - показувати знову всі + виправити фільтр під час видалення автомобіля
 
 const refs = {
   addCarBtn: document.getElementById("addCarBtn"),
@@ -43,8 +42,35 @@ refs.markFilter.addEventListener("change", handleMarkChange);
 refs.addCarBtn.addEventListener("click", handleClick);
 refs.carsContainer.addEventListener("click", handleCarsClick);
 
+function disableResetButton() {
+  refs.resetBtn.disabled = true;
+  refs.addCarBtn.disabled = false;
+
+  refs.resetBtn.removeEventListener("click", handleReset);
+}
+
+function enableResetButton() {
+  refs.resetBtn.disabled = false;
+  refs.addCarBtn.disabled = true;
+  refs.resetBtn.addEventListener("click", handleReset);
+}
+
+function handleReset() {
+  refs.sortFilter.value = "default";
+  refs.markFilter.value = "default";
+  refs.sortFilter.dispatchEvent(new Event("change"));
+  refs.markFilter.dispatchEvent(new Event("change"));
+}
+
 async function handleSortChange(event) {
   const cars = await getAllCars();
+
+  console.log(event.target.value);
+  if (event.target.value === "default") {
+    disableResetButton();
+  } else {
+    enableResetButton();
+  }
 
   switch (event.target.value) {
     case "az":
@@ -65,8 +91,10 @@ async function handleMarkChange(event) {
   let filteredCars = cars;
   if (event.target.value === "default") {
     refs.sortFilter.disabled = false;
+    disableResetButton();
   } else {
     refs.sortFilter.disabled = true;
+    enableResetButton();
     filteredCars = cars.filter(({ mark }) => mark === event.target.value);
     refs.sortFilter.value = "default";
   }
@@ -93,8 +121,21 @@ async function deleteMarkupCar(event) {
   console.log(deleteId);
   try {
     await deleteCar(deleteId);
-    await addCarMarksToFilter();
     Notiflix.Notify.success(`Car successfully delete!`);
+    
+    if (refs.markFilter.value !== "default") {
+      const carMark = targetCar.children[1].children.mark.textContent;
+      await addCarMarksToFilter(carMark);
+      refs.markFilter.dispatchEvent(new Event("change"));
+    } else {
+      await addCarMarksToFilter();
+    }
+
+    if (refs.carsContainer.children.length - 1 === 0) {
+      refs.markFilter.value = "default";
+      refs.markFilter.dispatchEvent(new Event("change"));
+    }
+
     targetCar.remove();
   } catch (err) {
     Notiflix.Notify.failure(`Error! We can't delete this car`);
@@ -136,7 +177,7 @@ async function loadFirstData() {
   addCarMarksToFilter();
 }
 
-async function addCarMarksToFilter() {
+async function addCarMarksToFilter(currentCar = "default") {
   const cars = await getAllCars();
   const carsMarks = cars.map(({ mark }) => mark);
   const uniqueCarsMarks = carsMarks.filter(
@@ -144,11 +185,11 @@ async function addCarMarksToFilter() {
   );
 
   const markup = uniqueCarsMarks
-    .map((mark) => ` <option value="${mark}">${mark}</option>`)
+    .map((mark) => `<option value="${mark}">${mark}</option>`)
     .join("");
 
-  console.log(uniqueCarsMarks);
   refs.markFilter.innerHTML = ` <option value="default">Filter cars by mark</option> ${markup}`;
+  refs.markFilter.value = currentCar;
 }
 
 function addCarToPage(markup) {
@@ -218,8 +259,20 @@ async function handleEditCarForm(event, carId, targetCar) {
   };
 
   try {
+    // console.log(refs.markFilter.value);
+    // if (refs.markFilter.value !== "default") {
+    //   // console.log(refs.markFilter.value);
+    //   refs.markFilter.value = updatedCar.mark;
+    //   console.log(refs.markFilter.value);
+    // }
+    console.log(updatedCar.mark, "IMPORTANT!!!");
     await updateCar(carId, updatedCar);
-    await addCarMarksToFilter();
+    if (refs.markFilter.value !== "default") {
+      await addCarMarksToFilter(updatedCar.mark);
+      refs.markFilter.dispatchEvent(new Event("change"));
+    } else {
+      await addCarMarksToFilter();
+    }
   } catch (err) {
     Notiflix.Notify.failure(`Error! We can't delete this car`);
     return;
