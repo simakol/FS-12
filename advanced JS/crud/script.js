@@ -23,7 +23,7 @@ import {
 import createModalWindow from "./templates/modalWindow.js";
 import createCarCardMarkup from "./templates/carCard.js";
 
-//TODO: пофіксити додавання і редагування машин
+//TODO: якщо при видаленні автомобіля в фільтрації машин не лишилось - показувати знову всі + виправити фільтр під час видалення автомобіля
 
 const refs = {
   addCarBtn: document.getElementById("addCarBtn"),
@@ -31,6 +31,7 @@ const refs = {
   msg: document.getElementById("msg"),
   markFilter: document.getElementById("markFilter"),
   sortFilter: document.getElementById("sortFilter"),
+  resetBtn: document.getElementById("resetBtn"),
 };
 
 const instance = createModalWindow();
@@ -42,7 +43,6 @@ refs.markFilter.addEventListener("change", handleMarkChange);
 refs.addCarBtn.addEventListener("click", handleClick);
 refs.carsContainer.addEventListener("click", handleCarsClick);
 
-// todo: відключати сортування коли активна фільтрація і навпаки
 async function handleSortChange(event) {
   const cars = await getAllCars();
 
@@ -62,10 +62,14 @@ async function handleSortChange(event) {
 async function handleMarkChange(event) {
   const cars = await getAllCars();
 
-  const filteredCars =
-    event.target.value === "default"
-      ? cars
-      : cars.filter(({ mark }) => mark === event.target.value);
+  let filteredCars = cars;
+  if (event.target.value === "default") {
+    refs.sortFilter.disabled = false;
+  } else {
+    refs.sortFilter.disabled = true;
+    filteredCars = cars.filter(({ mark }) => mark === event.target.value);
+    refs.sortFilter.value = "default";
+  }
 
   const carsMarkup = filteredCars
     .map((car) => createCarCardMarkup(car))
