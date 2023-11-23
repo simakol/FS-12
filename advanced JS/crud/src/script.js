@@ -23,7 +23,6 @@ import {
 import createModalWindow from "./templates/modalWindow.js";
 import createCarCardMarkup from "./templates/carCard.js";
 
-
 const refs = {
   addCarBtn: document.getElementById("addCarBtn"),
   carsContainer: document.getElementById("carsContainer"),
@@ -122,7 +121,7 @@ async function deleteMarkupCar(event) {
   try {
     await deleteCar(deleteId);
     Notiflix.Notify.success(`Car successfully delete!`);
-    
+
     if (refs.markFilter.value !== "default") {
       const carMark = targetCar.children[1].children.mark.textContent;
       await addCarMarksToFilter(carMark);
