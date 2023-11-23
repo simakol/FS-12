@@ -1,4 +1,6 @@
-const BASE_URL = "https://65411cb8f0b8287df1fdd3be.mockapi.io";
+// const BASE_URL = "https://65411cb8f0b8287df1fdd3be.mockapi.io";
+// const ENDPOINT = "cars";
+const BASE_URL = "http://127.0.0.1:3000/api";
 const ENDPOINT = "cars";
 
 function createNewCar(carObj) {

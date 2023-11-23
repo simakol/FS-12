@@ -14,7 +14,10 @@ app.listen(3000, () => {
   console.log("\nServer started at port 3000\n");
 });
 
-const db = ""; // ключ доступу до БД
+//guqN1MxGXYe7BlqQ
+//alexsim
+const db =
+  "mongodb+srv://alexsim:guqN1MxGXYe7BlqQ@cluster0.cc3nitm.mongodb.net/?retryWrites=true&w=majority"; // ключ доступу до БД
 
 mongoose
   .connect(db)
