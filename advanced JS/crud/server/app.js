@@ -49,3 +49,12 @@ router.get("/cars", async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
+
+router.delete("/cars/:id", async (req, res) => {
+  try {
+    const data = await Model.deleteOne({ _id: req.params.id });
+    res.json(data);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
