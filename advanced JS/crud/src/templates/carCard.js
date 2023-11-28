@@ -1,6 +1,6 @@
-export default function createCarCardMarkup({ mark, model, id, img }) {
+export default function createCarCardMarkup({ mark, model, _id, img }) {
   return `
-    <div class="car-card" data-id="${id}">
+    <div class="car-card" data-id="${_id}">
         <img src="${img}" alt="${mark} ${model}" name="img">
        <div class="car-card-titles" name="titles">
         <h2 name="mark">${mark}</h2>

@@ -116,8 +116,8 @@ function handleCarsClick(event) {
 
 async function deleteMarkupCar(event) {
   const targetCar = event.target.closest(".car-card");
-  const deleteId = Number(targetCar.dataset.id);
-  console.log(deleteId);
+  const deleteId = targetCar.dataset.id;
+
   try {
     await deleteCar(deleteId);
     Notiflix.Notify.success(`Car successfully delete!`);
@@ -146,7 +146,7 @@ async function editMarkupCar(event) {
   const targetCar = event.target.closest(".car-card");
   const carId = targetCar.dataset.id;
   const cars = await getAllCars();
-  const currentCar = cars.find(({ id }) => id === carId);
+  const currentCar = cars.find(({ _id }) =>_id === carId);
   console.log(currentCar, cars, carId);
   console.log(targetCar);
   instance.show();
@@ -226,13 +226,14 @@ async function handleSubmit(event) {
 
   try {
     const {
-      data: { id },
+      data: { _id },
     } = await createNewCar(newCar);
+
     await addCarMarksToFilter();
     event.target.reset();
     Notiflix.Notify.success("Added new car!");
     instance.close();
-    addCarToPage(createCarCardMarkup({ ...newCar, id }));
+    addCarToPage(createCarCardMarkup({ ...newCar, _id }));
   } catch (err) {
     Notiflix.Notify.failure("Can not add a new car!");
     return;
